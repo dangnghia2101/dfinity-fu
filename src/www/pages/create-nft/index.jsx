@@ -86,9 +86,11 @@ function CreateNft(props) {
 	};
 
 	const onFinish = async (values) => {
-		console.log(values);
+		console.log('===> image ', values, fileImg);
 		toast('Minting NFT!!!');
 		const cid = await client.put([fileImg]);
+		console.log('===> cid ipfs ', cid);
+
 		const nFile = new File(
 			[
 				JSON.stringify({

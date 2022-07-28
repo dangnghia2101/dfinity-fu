@@ -24,8 +24,8 @@ import Types "./types";
 import AID "./Utils/AccountId";
 import User "./User";
 
-shared(msg) actor class NFTSale(
-    _owner: Principal,
+shared(msg) actor class NFTSale( // shared get who caller
+    _owner: Principal, // Principal la nguoi dung tham gia, canister la nguoi deploy smart contract
     ) = this {
 
     type Metadata = Types.Metadata;
@@ -859,12 +859,13 @@ shared(msg) actor class NFTSale(
         return res.toArray();
     };
 
-    // upgrade functions
+    // upgrade functions // run beforce canister build
     system func preupgrade() {
         usersEntries := Iter.toArray(users.entries());
         tokensEntries := Iter.toArray(tokens.entries());
     };
 
+    // run after canister build
     system func postupgrade() {
         type TokenInfo = Types.TokenInfo;
         type UserInfo = Types.UserInfo;

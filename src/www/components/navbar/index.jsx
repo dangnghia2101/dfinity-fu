@@ -69,7 +69,7 @@ function Navbar(props) {
 
 	return (
 		<Container>
-			<ConnectDialog dark={false} />
+			<ConnectDialog dark={true} />
 			<LogoWrapper>
 				<Link to='/' style={{ color: 'black' }}>
 					<Logo
@@ -78,10 +78,9 @@ function Navbar(props) {
 						onClick={scrollToTop}
 					/>
 				</Link>
-				<Name>NFPTU</Name>
+				<Name>WINNER</Name>
 			</LogoWrapper>
 			<Right>
-
 				<OptionWrapper>
 					<Menu>
 						<Link to='/' style={{ color: 'black' }} onClick={scrollToTop}>
