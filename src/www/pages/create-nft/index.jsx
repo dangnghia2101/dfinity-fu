@@ -38,7 +38,7 @@ function CreateNft(props) {
 		isIdle,
 		connect,
 		isConnecting,
-		principal
+		principal,
 	} = useConnect();
 	const [fileImg, setFileImg] = useState(true);
 	const [listNFt, setListNFt] = useState([]);
@@ -66,13 +66,13 @@ function CreateNft(props) {
 	};
 
 	useEffect(async () => {
-		if(principal && superheroes) {
+		if (principal && superheroes) {
 			getLIst();
 		}
 	}, [principal, superheroes]);
 
 	const getListAll = async () => {
-		console.log('SUPERHEROES_CANISTER_ID', process.env.SUPERHEROES_CANISTER_ID );
+		console.log('SUPERHEROES_CANISTER_ID', process.env.SUPERHEROES_CANISTER_ID);
 		const res = await superheroes.getAllTokens();
 		console.log(res);
 		const promise4all = Promise.all(
@@ -104,6 +104,7 @@ function CreateNft(props) {
 		const res = await superheroes.mint(Principal.fromText(principal), [
 			{ tokenUri: `${IPFS_LINK}${metadataCID}/${values?.name}.json` },
 		]);
+		console.log('==== mint ', res);
 		toast('Minted NFT success!!!');
 		getLIst();
 		getListAll();
@@ -123,7 +124,6 @@ function CreateNft(props) {
 		const resu = await promise4all;
 		setListNFt(resu);
 	};
-
 
 	return (
 		<Container>
@@ -164,7 +164,6 @@ function CreateNft(props) {
 							<Form.Item
 								name='name'
 								rules={[{ required: true, message: 'Please input NFT name!' }]}>
-						
 								<Input size='large' placeholder='NFT name' />
 							</Form.Item>
 

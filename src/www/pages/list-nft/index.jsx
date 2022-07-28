@@ -18,16 +18,16 @@ function ListNft() {
 		isIdle,
 		connect,
 		isConnecting,
-		principal
+		principal,
 	} = useConnect();
 	const [listNFt, setListNFt] = useState([]);
 	const [listAllNFt, setListAllNFt] = useState([]);
 
 	const [superheroes, { loading, error }] = useCanister('superheroes');
 	useEffect(async () => {
-		if(superheroes) {
+		if (superheroes) {
 			getListAll();
-			getLIst()
+			getLIst();
 		}
 	}, [superheroes]);
 
@@ -40,8 +40,8 @@ function ListNft() {
 		);
 		const resu = await promise4all;
 		const newlist = res.map((el, index) => {
-			return {...el, ...resu[index]}
-		})
+			return { ...el, ...resu[index] };
+		});
 		setListAllNFt(newlist);
 	};
 
@@ -54,8 +54,8 @@ function ListNft() {
 		);
 		const resu = await promise4all;
 		const newlist = res.map((el, index) => {
-			return {...el, ...resu[index]}
-		})
+			return { ...el, ...resu[index] };
+		});
 		setListNFt(newlist);
 	};
 
